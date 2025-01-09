@@ -18,3 +18,19 @@ export async function insertUser(user_name, email) {
   );
   return result.rows[0];
 }
+
+export async function modifyUserById(id, user_name, email) {
+  const result = await pool.query(
+    "UPDATE users SET user_name = $1, email = $2 WHERE id = $3 RETURNING *",
+    [user_name, email, id]
+  );
+  return result.rows[0] || null;
+}
+
+export async function removeUserById(id) {
+  const result = await pool.query(
+    "DELETE FROM users WHERE id = $1 RETURNING *",
+    [id]
+  );
+  return result.rows[0] || null;
+}

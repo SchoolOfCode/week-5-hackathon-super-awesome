@@ -1,16 +1,3 @@
-// THIS IS COPY PASTE AND NEEDS TO BE POPULATED WITH OUT DATA
-// THIS IS COPY PASTE AND NEEDS TO BE POPULATED WITH OUT DATA
-// THIS IS COPY PASTE AND NEEDS TO BE POPULATED WITH OUT DATA
-// THIS IS COPY PASTE AND NEEDS TO BE POPULATED WITH OUT DATA
-// THIS IS COPY PASTE AND NEEDS TO BE POPULATED WITH OUT DATA
-// THIS IS COPY PASTE AND NEEDS TO BE POPULATED WITH OUT DATA
-// THIS IS COPY PASTE AND NEEDS TO BE POPULATED WITH OUT DATA
-// THIS IS COPY PASTE AND NEEDS TO BE POPULATED WITH OUT DATA
-// THIS IS COPY PASTE AND NEEDS TO BE POPULATED WITH OUT DATA
-// THIS IS COPY PASTE AND NEEDS TO BE POPULATED WITH OUT DATA
-// THIS IS COPY PASTE AND NEEDS TO BE POPULATED WITH OUT DATA
-// THIS IS COPY PASTE AND NEEDS TO BE POPULATED WITH OUT DATA
-
 import { pool } from "../index.js";
 
 async function resetDatabase() {
@@ -21,7 +8,7 @@ async function resetDatabase() {
       DROP TABLE IF EXISTS users CASCADE;
     `);
 
-    // Create the authors table
+    // Create the users table
     await pool.query(`
       CREATE TABLE users (
         id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -30,7 +17,7 @@ async function resetDatabase() {
       );
     `);
 
-    // Create the books table with a foreign key to the authors table
+    // Create the games table with a foreign key to the users table
     await pool.query(`
       CREATE TABLE games (
         id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -40,7 +27,7 @@ async function resetDatabase() {
       );
     `);
 
-    // Seed the authors table
+    // Seed the users table
     await pool.query(`
       INSERT INTO users (user_name, email)
       VALUES 
@@ -49,7 +36,7 @@ async function resetDatabase() {
         ('Joe', 'jow@msn.com');
     `);
 
-    // Seed the books table
+    // Seed the games table
     await pool.query(`
       INSERT INTO games (date_played, winning_player, losing_player)
       VALUES 
