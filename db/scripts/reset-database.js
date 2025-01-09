@@ -11,8 +11,6 @@
 // THIS IS COPY PASTE AND NEEDS TO BE POPULATED WITH OUT DATA
 // THIS IS COPY PASTE AND NEEDS TO BE POPULATED WITH OUT DATA
 
-
-
 import { pool } from "../index.js";
 
 async function resetDatabase() {
@@ -28,7 +26,7 @@ async function resetDatabase() {
       CREATE TABLE users (
         id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
         user_name VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL
       );
     `);
 
@@ -37,8 +35,8 @@ async function resetDatabase() {
       CREATE TABLE games (
         id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
         date_played DATE,
-        winning_player int,
-        losing_player int
+        winning_player INT REFERENCES users(id),
+        losing_player INT REFERENCES users(id)
       );
     `);
 
@@ -48,7 +46,7 @@ async function resetDatabase() {
       VALUES 
         ('Adam', 'ajhemmings@live.co.uk'),
         ('Suede', 'liz@lizwade.com'),
-        ('Joe', 'jow@msn.com'),
+        ('Joe', 'jow@msn.com');
     `);
 
     // Seed the books table
@@ -56,15 +54,10 @@ async function resetDatabase() {
       INSERT INTO games (date_played, winning_player, losing_player)
       VALUES 
         ('2025-01-01', 1, 2),
-        ('2025-08-17'),
-        ('Harry Potter and the Philosopher''s Stone', '1997-06-26', 2),
-        ('Harry Potter and the Chamber of Secrets', '1998-07-02', 2),
-        ('The Hobbit', '1937-09-21', 3),
-        ('The Lord of the Rings: The Fellowship of the Ring', '1954-07-29', 3),
-        ('The Lord of the Rings: The Two Towers', '1954-11-11', 3),
-        ('The Lord of the Rings: The Return of the King', '1955-10-20', 3),
-        ('And Then There Were None', '1939-11-06', 4),
-        ('Murder on the Orient Express', '1934-01-01', 4);
+        ('2025-08-17', 3, 1),
+        ('2024-12-31', 1, 3),
+        ('2024-12-26', 3, 2),
+        ('2024-12-24', 3, 2);     
     `);
 
     console.log("Database reset successful");
