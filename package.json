@@ -1,0 +1,31 @@
+{
+  "name": "week-5-hackathon-super-awesome",
+  "version": "1.0.0",
+  "description": "Feel free to delete this and start from scratch.",
+  "main": "app.js",
+  "type": "module",
+  "bin": {
+    "week-5-hackathon-super-awesome": "bin/www.js"
+  },
+  "scripts": {
+    "start": "node bin/www.js",
+    "dev": "node -r dotenv/config --watch bin/www.js",
+    "reset-database": "node -r dotenv/config db/scripts/reset-database.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.13.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SchoolOfCode/week-5-hackathon-super-awesome.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SchoolOfCode/week-5-hackathon-super-awesome/issues"
+  },
+  "homepage": "https://github.com/SchoolOfCode/week-5-hackathon-super-awesome#readme"
+}
