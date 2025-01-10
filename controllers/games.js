@@ -48,7 +48,7 @@ export async function updateGameById(req, res) {
 }
 
 // currently throwing errors. Should these res statements have "return"?
-export async function deleteGameById(id) {
+export async function deleteGameById(req, res) {
   try {
     const id = req.params.id;
     const game = await removeGameById(id);
@@ -57,7 +57,7 @@ export async function deleteGameById(id) {
         .status(404)
         .json({ status: "fail", message: "Game not found" });
     }
-    res.status(204).send(); // 204 No Content But TODO: shouldn't this send the deleted game?
+    res.status(200).json({ status: "success", data: game }); 
   } catch (error) {
     res.status(500).json({ status: "error", message: error.message });
   }
