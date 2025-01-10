@@ -1,4 +1,4 @@
-import { getUsers } from "../controllers/users.js";
+import { getUsers } from "../controllers/users.js"; // TODO: Do we need this? Why?
 import { pool } from "../db/index.js";
 
 export async function fetchAllUsers() {
@@ -19,6 +19,7 @@ export async function insertUser(user_name, email) {
   return result.rows[0];
 }
 
+// TODO: Make this work for only a partial patch?
 export async function modifyUserById(id, user_name, email) {
   const result = await pool.query(
     "UPDATE users SET user_name = $1, email = $2 WHERE id = $3 RETURNING *",

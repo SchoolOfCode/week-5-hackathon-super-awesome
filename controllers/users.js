@@ -1,5 +1,5 @@
 import {
-  // functions that will exist in MODELS
+  // the SQL-handling functions in MODELS
   fetchAllUsers,
   fetchUserById,
   insertUser,
@@ -16,7 +16,7 @@ export async function getUsers(req, res) {
   }
 }
 
-export async function getUsersById(req, res) {
+export async function getUserById(req, res) {
   try {
     const user = await fetchUserById(parseInt(req.params.id));
     if (user) {
@@ -44,6 +44,7 @@ export async function createUser(req, res) {
   }
 }
 
+//TODO: Make this work for only a partial patch?
 export async function updateUserById(req, res) {
   try {
     const id = req.params.id;
@@ -51,7 +52,7 @@ export async function updateUserById(req, res) {
     if (!user_name || !email) {
       return res
         .status(400)
-        .json({ status: "fail", message: "Missing required fields" }); //TODO: shouldn't we be able to patch just one field?
+        .json({ status: "fail", message: "Missing required fields" }); // shouldn't we be able to patch just one field?
     }
     const user = await modifyUserById(id, user_name, email);
     if (!user) {
@@ -67,6 +68,8 @@ export async function updateUserById(req, res) {
 
 // this is currently failing as the attempted deletion "VIOLATES FOREIGN KEY CONSTRAINTS"
 // Was this a problem with books and authors? How was it solved?
+//TODO: fix violation issue
+
 export async function deleteUserById(req, res) {
   try {
     const id = req.params.id;
